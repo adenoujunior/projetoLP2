@@ -4,47 +4,34 @@ import java.util.Scanner;
 
 public class MinMax {
 	    public static void main(String[] args) {
-		        Scanner sc = new Scanner(System.in);
-		        int n1, n2, n3;
-		
-		        System.out.print("Entre com o primeiro inteiro: ");
-		        n1 = sc.nextInt();
-		        System.out.print("Entre com o segundo inteiro: ");
-		        n2 = sc.nextInt();
-		        System.out.print("Entre com o terceiro inteiro: ");
-		        n3 = sc.nextInt();
-		        if (n1 > n2) {
-		            if (n1 > n3) {
-		                if (n2 < n3) {
-		                    System.out.println("O menor numero eh: " + n2);
-		                } else {
-	                    System.out.println("O menor numero eh: " + n3);
-		                }
-		                System.out.println("O maior numero eh: " + n1);
-	            } else {
-		                if (n1 < n2) {
-		                    System.out.println("O menor numero eh: " + n1);
-		                } else {
-		                    System.out.println("O menor numero eh: " + n2);
-		                }
-		                System.out.println("O maior numero eh: " + n3);
-		            }
-		        } else {
-		            if (n2 > n3) {
-		                if (n1 < n3) {
-		                    System.out.println("O menor numero eh: " + n1);
-		                } else {
-		                    System.out.println("O menor numero eh: " + n3);
-		                }
-		                System.out.println("O maior numero eh: " + n2);
-		            } else {
-		                if (n1 < n2) {
-		                    System.out.println("O menor numero eh: " + n1);
-		                } else {
-		                    System.out.println("O menor numero eh: " + n2);
-		               }
-		                System.out.println("O maior numero eh: " + n3);
-		            }
-		        }
-		    }
-		}
+		 
+	      final int NÚMEROS_A_LER = 3;
+	      Scanner sc = new Scanner(System.in);
+	      int min = Integer.MAX_VALUE;
+	      int máx = Integer.MIN_VALUE;
+	 
+	      for (int i = 0; i < NÚMEROS_A_LER; i++) {
+	        int num = recebeProximoInteiro(sc);
+	        min = menorNumeroEntre(min, num);
+	        máx = maiorNumeroEntre(máx, num);
+	      }
+	 
+	      System.out.println("O menor numero é: " + min);
+	      System.out.println("O maior numero é: " + máx);
+	   }
+	 
+	   private static int maiorNumeroEntre(int numero1, int numero2) {
+	      return numero2 > numero1? numero2: numero1;
+	   }
+	 
+	   private static int menorNumeroEntre(int numero1, int numero2) {
+	      return numero2 < numero1? numero2: numero1;
+	   }
+	 
+	   private static int recebeProximoInteiro(Scanner sc) {
+	      System.out.print("Entre com o proximo inteiro:");
+	      int num = sc.nextInt();
+	      return num;
+	   }
+	 
+	}
