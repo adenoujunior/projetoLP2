@@ -217,7 +217,7 @@ public class TestaRobo {
 		
 		try{
 			sala2 = criaSala();
-			robo2 = new Robo(sala2, BATERIA_TOTAL);
+			 robo2 = new Robo(sala2, BATERIA_TOTAL);
 		}catch(Exception e){
 			e.printStackTrace();
 		}
