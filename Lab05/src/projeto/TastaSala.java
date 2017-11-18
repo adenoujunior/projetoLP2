@@ -10,6 +10,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+
 public class TestaSala {
 	private Sala sala;
 	private final int NUM_LINHAS = 10;
@@ -24,7 +25,7 @@ public class TestaSala {
 	public void testaCriaSala() {
 		try {
 			new Sala(-1, 10);
-			Assert.fail("Esperava excecao, pois a quantidade de posi coes na horizontal (linhas) esta errada.");
+			Assert.fail("Esperava excecao, pois a quantidade de posi�coes na horizontal (linhas) esta errada.");
 		} catch (Exception e) {
 			Assert.assertEquals(
 					"Mensagem errada",
@@ -34,7 +35,7 @@ public class TestaSala {
 
 		try {
 			new Sala(10, -1);
-			Assert.fail("Esperava excecao, pois a quantidade de posi coes na vertical (colunas) esta errada.");
+			Assert.fail("Esperava excecao, pois a quantidade de posi�coes na vertical (colunas) esta errada.");
 		} catch (Exception e) {
 			Assert.assertEquals(
 					"Mensagem errada",
@@ -44,7 +45,7 @@ public class TestaSala {
 
 		try {
 			new Sala(-1, -1);
-			Assert.fail("Esperava excecao, pois a quantidade de posi coes na horizontal (linhas) e na vertical (colunas) esta errada.");
+			Assert.fail("Esperava excecao, pois a quantidade de posi�coes na horizontal (linhas) e na vertical (colunas) esta errada.");
 		} catch (Exception e) {
 			Assert.assertEquals(
 					"Mensagem errada",
@@ -54,7 +55,7 @@ public class TestaSala {
 
 		try {
 			new Sala(0, 0);
-			Assert.fail("Esperava excecao, pois a quantidade de posi coes na horizontal (linhas) e na vertical (colunas) esta errada.");
+			Assert.fail("Esperava excecao, pois a quantidade de posi�coes na horizontal (linhas) e na vertical (colunas) esta errada.");
 		} catch (Exception e) {
 			Assert.assertEquals(
 					"Mensagem errada",
@@ -64,7 +65,7 @@ public class TestaSala {
 
 		try {
 			new Sala(10, 0);
-			Assert.fail("Esperava excecao, pois a quantidade de posi coes na vertical (colunas) esta errada.");
+			Assert.fail("Esperava excecao, pois a quantidade de posi�coes na vertical (colunas) esta errada.");
 		} catch (Exception e) {
 			Assert.assertEquals(
 					"Mensagem errada",
@@ -74,7 +75,7 @@ public class TestaSala {
 
 		try {
 			new Sala(0, 10);
-			Assert.fail("Esperava excecao, pois a quantidade de posi coes na horizontal (linhas) esta errada.");
+			Assert.fail("Esperava excecao, pois a quantidade de posi�coes na horizontal (linhas) esta errada.");
 		} catch (Exception e) {
 			Assert.assertEquals(
 					"Mensagem errada",
@@ -84,7 +85,7 @@ public class TestaSala {
 
 		try {
 			new Sala(0, 0);
-			Assert.fail("Esperava excecao, pois a quantidade de posi coes na horizontal (linhas) e na vertical (colunas) esta errada.");
+			Assert.fail("Esperava excecao, pois a quantidade de posi�coes na horizontal (linhas) e na vertical (colunas) esta errada.");
 		} catch (Exception e) {
 			Assert.assertEquals(
 					"Mensagem errada",
@@ -105,9 +106,9 @@ public class TestaSala {
 		Assert.assertTrue(sala.getNumPosicoesHorizontais() == 8);
 		Assert.assertTrue(sala.getNumPosicoesVerticais() == 9);
 	}
-
+	
 	@Test
-	public void testaIsVazia() {
+	public void testaIsVazia() throws Exception{
 		Assert.assertTrue(sala.isVazia());
 		Assert.assertTrue(sala.inserirObstaculo(0, 0));
 		Assert.assertFalse(sala.isVazia());
@@ -138,10 +139,33 @@ public class TestaSala {
 		Assert.assertTrue(sala.inserirObstaculo(9, 9));
 		Assert.assertFalse(sala.isPosicaoLivre(9, 9));
 
-		Assert.assertFalse(sala.inserirObstaculo(10, 10));
-		Assert.assertFalse(sala.inserirObstaculo(-1, -1));
-		Assert.assertFalse(sala.inserirObstaculo(-1, 0));
-		Assert.assertFalse(sala.inserirObstaculo(0, -1));
+		Assert.assertFalse(sala.inserirObstaculo(0, 0));
+		Assert.assertFalse(sala.inserirObstaculo(9, 9));
+		
+		try {
+			sala.inserirObstaculo(10, 10);
+			Assert.fail("Esperava-se uma exceção de posição inexistente.");
+		}catch(Exception e) {
+			Assert.assertEquals("Mensagem errada.", "Posicao inexistente.", e.getMessage());
+		}
+		try {
+			sala.inserirObstaculo(-1, -1);
+			Assert.fail("Esperava-se uma exceção de posição inexistente.");
+		}catch(Exception e) {
+			Assert.assertEquals("Mensagem errada.", "Posicao inexistente.", e.getMessage());
+		}
+		try {
+			sala.inserirObstaculo(-1, 0);
+			Assert.fail("Esperava-se uma exceção de posição inexistente.");
+		}catch(Exception e) {
+			Assert.assertEquals("Mensagem errada.", "Posicao inexistente.", e.getMessage());
+		}
+		try {
+			sala.inserirObstaculo(0, -1);
+			Assert.fail("Esperava-se uma exceção de posição inexistente.");
+		}catch(Exception e) {
+			Assert.assertEquals("Mensagem errada.", "Posicao inexistente.", e.getMessage());
+		}
 	}
 
 	@Test
@@ -163,7 +187,7 @@ public class TestaSala {
 		Assert.assertFalse(sala.setPosicao(-1, 0, Sala.OCUPADO));
 		Assert.assertFalse(sala.setPosicao(0, -1, Sala.OCUPADO));
 	}
-
+	
 	@Test
 	public void testaIsPosicaoLivre() throws Exception {
 		Assert.assertTrue(sala.isPosicaoLivre(0, 0));
@@ -193,8 +217,9 @@ public class TestaSala {
 	}
 	
 	@Test
-	public void testaEquals() {
+	public void testaEquals() throws Exception {
 		Sala outraSala = null;
+		Assert.assertFalse(sala.equals(outraSala));
 		try {
 			outraSala = new Sala(NUM_LINHAS, NUM_COLUNAS);
 		} catch (Exception e) {
@@ -216,5 +241,4 @@ public class TestaSala {
 		outraSala.inserirObstaculo(9, 9);
 		Assert.assertTrue(sala.equals(outraSala));
 	}
-
 }
