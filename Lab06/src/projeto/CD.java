@@ -1,9 +1,7 @@
 /*Aluno: Adenou Dantas de Farias Júnior*/
 /*Aluno 2: Joyce Mikaella das Mercês Aciole*/
 
-
 package projeto;
-
 /**
  *
  * @author Adenou

@@ -1,8 +1,6 @@
 /*Aluno: Adenou Dantas de Farias Júnior*/
 /*Aluno 2: Joyce Mikaella das Mercês Aciole*/
-
 package projeto;
-
 /**
  * Classe de testes da classe MinhaCDteca.
  * @author Adenou
